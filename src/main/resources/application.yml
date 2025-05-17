@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: spring-ai-structured-output
+
+  # AI configurations
+  ai:
+    openai:
+      api-key: ${GEMINI_API_KEY}
+      base-url: https://generativelanguage.googleapis.com/v1beta/openai
+      chat:
+        completions-path: /chat/completions
+        options:
+          model: gemini-2.0-flash-exp
+          # Uncomment below properties (line 16 and 17) ONLY if you want raw JSON directly from the AI (like for the '/engagement' example).
+          # For all other examples using specific converters (UserProfile, lists, maps), KEEP THIS COMMENTED.
+          #responseFormat:
+           # type: JSON_OBJECT
+
+
