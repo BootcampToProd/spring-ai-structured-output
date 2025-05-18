@@ -4,6 +4,7 @@ import com.bootcamptoprod.dto.TrendingTopic;
 import com.bootcamptoprod.dto.UserProfile;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.converter.ListOutputConverter;
+import org.springframework.ai.converter.MapOutputConverter;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.http.ResponseEntity;
@@ -78,6 +79,28 @@ public class SocialMediaAnalyticsController {
                 .entity(new ListOutputConverter(new DefaultConversionService())); // Using ListOutputConverter
 
         return ResponseEntity.ok(keywords);
+    }
+
+    @GetMapping("/campaign-summary")
+    public ResponseEntity<Map<String, Object>> getCampaignSummary(@RequestParam String name) {
+        String userPrompt = """
+                Provide a summary for the social media campaign named '{name}' for different social media platforms (Twitter, Instagram, Facebook).
+                Include key metrics like:
+                - Total Impressions
+                - Click-Through Rate (CTR) as a percentage
+                - Total Budget Spent (in USD)
+                - A brief description of the Target Audience
+                - Overall Performance Assessment (e.g., "Exceeded Expectations", "Met Goals", "Needs Improvement")
+                """;
+
+        // Explicitly using MapOutputConverter
+        Map<String, Object> campaignSummary = chatClient.prompt()
+                .user(input -> input.text(userPrompt)
+                        .param("name", name))
+                .call()
+                .entity(new MapOutputConverter()); // <-- Explicitly providing the converter
+
+        return ResponseEntity.ok(campaignSummary);
     }
 
     @GetMapping("/sentiment")
