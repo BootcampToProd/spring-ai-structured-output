@@ -14,6 +14,8 @@ All examples are built around a fun "Social Media Analytics" theme.
 📖 **Dive Deeper**: For a complete walkthrough, detailed explanations of each structured output type, and step-by-step instructions, read our blog post.<br>
 👉 [Spring AI Structured Output: Converting AI Responses into Structured Data](https://bootcamptoprod.com/spring-ai-structured-output-guide/)
 
+🎥 **Visual Learning**: Prefer video tutorials? Watch our step-by-step implementation guide on YouTube.<br>
+👉 [Spring AI Structured Output: Convert AI Responses to Java Objects in Minutes](https://youtu.be/jlLGpd7bsoI)
 ---
 
 ## 📦 Environment Variables
